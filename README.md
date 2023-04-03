@@ -27,7 +27,6 @@ npm install
 ```
 
 Renomeie o arquivo .env.example para .env
-Cole a url enviada na variável de ambiente REACT_APP_BACKEND_URL
 
 
 Inicie o servidor
