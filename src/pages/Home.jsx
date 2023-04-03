@@ -7,7 +7,7 @@ const Home = () => {
   const [patients, setPatients] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:3008/patients')
+    axios.get(`${process.env.BACKEND_URL}/patients`)
       .then(({ data }) => {
         setPatients(data)
       })
@@ -22,7 +22,7 @@ const Home = () => {
 
   const deletePatientHandle = async (patientId) => {
     try {
-      await axios.delete(`http://localhost:3008/patients/${patientId}`)
+      await axios.delete(`${process.env.BACKEND_URL}/patients/${patientId}`)
       setPatients(patients.filter(patient => patient.id !== patientId))
     } catch (error) {
       console.log(error)

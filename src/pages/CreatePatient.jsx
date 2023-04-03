@@ -17,7 +17,7 @@ export const CreatePatient = () => {
   const createPatientHandle = async () => {
     try {
       if (patient.name && patient.lastName && patient.birthDate && patient.disease) {
-        await axios.post('http://localhost:3008/patients', { ...patient })
+        await axios.post(`${process.env.BACKEND_URL}/patients`, { ...patient })
         updateMessage('Paciente cadastrado com sucesso')
       }
     } catch (error) {

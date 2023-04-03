@@ -39,7 +39,7 @@ export const EditPatient = () => {
     try {
       console.log('patient', patient)
       if (Reflect.ownKeys(patient).length) {
-        await axios.patch(`http://localhost:3008/patients/${id}`, { ...patient })
+        await axios.patch(`${process.env.BACKEND_URL}/patients/${id}`, { ...patient })
         updateMessage('Paciente atualizado com sucesso')
       }
     } catch (error) {
