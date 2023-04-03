@@ -37,7 +37,6 @@ export const EditPatient = () => {
 
   const editPatientHandle = async () => {
     try {
-      console.log('patient', patient)
       if (Reflect.ownKeys(patient).length) {
         await api.patch(`/patients/${id}`, { ...patient })
         updateMessage('Paciente atualizado com sucesso')
@@ -114,7 +113,7 @@ export const EditPatient = () => {
         <span> {message}</span>
       </Form>
       <Link to='/'>
-        <Button type='button' onClick={() => console.log(patient)}>Voltar</Button>
+        <Button type='button'>Voltar</Button>
       </Link>
     </Container>
   )

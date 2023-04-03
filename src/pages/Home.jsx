@@ -7,7 +7,6 @@ const Home = () => {
   const [patients, setPatients] = useState([])
 
   useEffect(() => {
-    console.log('process.env.BACKEND_URL', process.env.REACT_APP_BACKEND_URL)
     api.get(`/patients`)
       .then(({ data }) => {
         setPatients(data)
