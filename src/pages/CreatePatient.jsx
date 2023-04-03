@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import { api } from '../infra/api';
 
 export const CreatePatient = () => {
 
@@ -17,7 +17,7 @@ export const CreatePatient = () => {
   const createPatientHandle = async () => {
     try {
       if (patient.name && patient.lastName && patient.birthDate && patient.disease) {
-        await axios.post(`${process.env.BACKEND_URL}/patients`, { ...patient })
+        await api.post(`/patients`, { ...patient })
         updateMessage('Paciente cadastrado com sucesso')
       }
     } catch (error) {

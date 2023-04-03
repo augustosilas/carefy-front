@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
-import { Table, Button, Pagination } from 'react-bootstrap'
-import axios from 'axios'
+import { Table, Button } from 'react-bootstrap'
+import { api } from '../infra/api';
 
 const Home = () => {
   const [patients, setPatients] = useState([])
 
   useEffect(() => {
-    axios.get(`${process.env.BACKEND_URL}/patients`)
+    console.log('process.env.BACKEND_URL', process.env.REACT_APP_BACKEND_URL)
+    api.get(`/patients`)
       .then(({ data }) => {
         setPatients(data)
       })
@@ -22,7 +23,7 @@ const Home = () => {
 
   const deletePatientHandle = async (patientId) => {
     try {
-      await axios.delete(`${process.env.BACKEND_URL}/patients/${patientId}`)
+      await api.delete(`/patients/${patientId}`)
       setPatients(patients.filter(patient => patient.id !== patientId))
     } catch (error) {
       console.log(error)

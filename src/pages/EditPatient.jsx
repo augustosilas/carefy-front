@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-import axios from 'axios'
+import { api } from '../infra/api';
 
 export const EditPatient = () => {
   const { state: { id, name, lastName, birthDate, disease } } = useLocation()
@@ -39,7 +39,7 @@ export const EditPatient = () => {
     try {
       console.log('patient', patient)
       if (Reflect.ownKeys(patient).length) {
-        await axios.patch(`${process.env.BACKEND_URL}/patients/${id}`, { ...patient })
+        await api.patch(`/patients/${id}`, { ...patient })
         updateMessage('Paciente atualizado com sucesso')
       }
     } catch (error) {
@@ -47,8 +47,6 @@ export const EditPatient = () => {
       console.log(error)
     }
   }
-
-
 
   const updateMessage = (message) => {
     setMessage(message)
